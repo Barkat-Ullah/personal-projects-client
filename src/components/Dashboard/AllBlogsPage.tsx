@@ -51,7 +51,7 @@ const AllBlogsPage: React.FC<AllBlogsPageProps> = ({ blogs }) => {
     <div className="p-6">
       <h1 className="text-2xl font-semibold text-black mb-4">All Blogs</h1>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto w-full">
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>

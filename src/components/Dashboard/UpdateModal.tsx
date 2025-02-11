@@ -33,13 +33,12 @@ const UpdateModal: React.FC<UpdateModalProps> = ({
   const [image, setImage] = useState<string>(blog.image);
   const [loading, setLoading] = useState<boolean>(false);
 
-
   useEffect(() => {
     setTitle(blog.title);
     setContent(blog.content);
     setCategory(blog.category);
     setImage(blog.image);
-  }, [blog]); 
+  }, [blog]);
 
   const handleUpdate = async () => {
     setLoading(true);

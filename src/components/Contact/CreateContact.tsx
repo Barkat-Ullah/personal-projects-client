@@ -62,7 +62,7 @@ const CreateContact = () => {
 
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="max-w-7xl px-6 py-12 mx-auto">
+      <div className="max-w-7xl px-6 py-8 mx-auto">
         <div>
           <p className="font-medium text-blue-500 dark:text-blue-400">
             Contact us

@@ -20,7 +20,7 @@ const Home = () => {
     const fetchProjects = async () => {
       const res = await fetch(`${backend}/admin/projects`);
       const { data } = await res.json();
-      setProjects(data.slice(0, 2));
+      setProjects(data?.slice(0, 2));
     };
     fetchProjects();
   }, []);
@@ -29,7 +29,7 @@ const Home = () => {
     const fetchBlogs = async () => {
       const res = await fetch(`${backend}/admin/blogs`);
       const { data } = await res.json();
-      setBlogs(data.slice(0, 3));
+      setBlogs(data?.slice(0, 3));
     };
     fetchBlogs();
   }, []);

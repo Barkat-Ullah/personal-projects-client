@@ -19,7 +19,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
     <div>
       <h2 className="text-xl lg:text-3xl text-center mt-4">Recent Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-[1200px] mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-[1200px] mx-auto px-2">
         {projects?.map((project) => (
           <CardContainer key={project._id} className="inter-var">
             <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
