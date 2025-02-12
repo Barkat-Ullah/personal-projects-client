@@ -1,5 +1,5 @@
 "use client";
-import { backend } from "@/utils/backend";
+import { sendContactMessage } from "@/utils/sendMessage";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
@@ -28,37 +28,20 @@ const CreateContact = () => {
   } = useForm<ContactFormData>();
 
  
-  const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
-    try {
-      const response = await fetch(`${backend}/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+ const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
+   const response = await sendContactMessage(data);
 
-      if (response.ok) {
-       
-        setSuccessMessage("Message sent successfully!");
-        reset(); 
-        setTimeout(() => {
-          setSuccessMessage(null);
-        }, 4000);
-      } else {
-        setSuccessMessage("Failed to send message.");
-        setTimeout(() => {
-          setSuccessMessage(null); 
-        }, 4000);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      setSuccessMessage("An error occurred.");
-      setTimeout(() => {
-        setSuccessMessage(null); 
-      }, 4000);
-    }
-  };
+   if (response.success) {
+     setSuccessMessage("Message sent successfully!");
+     reset();
+   } else {
+     setSuccessMessage(response.message || "Failed to send message.");
+   }
+
+   setTimeout(() => {
+     setSuccessMessage(null);
+   }, 4000);
+ };
 
   return (
     <section className="bg-white dark:bg-gray-900">

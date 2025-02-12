@@ -1,9 +1,10 @@
 import BlogCard from "@/components/Blog/BlogCard";
 import { backend } from "@/utils/backend";
 
-const BlogDetailsPage = async ({ params }: { params: { blogId: string } }) => {
-  // Ensure params is awaited
-  const blogId = await params.blogId;
+type Params = Promise<{ blogId: string }>;
+const BlogDetailsPage = async ({ params }: { params: Params }) => {
+ 
+  const {blogId} = await params ;
 
   try {
     const res = await fetch(`${backend}/admin/blogs/${blogId}`, {

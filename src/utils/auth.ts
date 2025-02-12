@@ -6,14 +6,17 @@ export interface FormValues {
 
 export const loggedinUser = async (data: FormValues) => {
   try {
-    const res = await fetch("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "https://personal-projects-with-blog.vercel.app/api/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+        cache: "no-store",
+      }
+    );
     console.log(res)
 
     if (!res.ok) {

@@ -1,12 +1,10 @@
 import ProjectDetailsCard from "@/components/Projects/ProjectDetailsCard";
 import { backend } from "@/utils/backend";
 
-const ProjectDetails = async ({
-  params,
-}: {
-  params: { projectId: string };
-}) => {
-  const res = await fetch(`${backend}/admin/projects/${params.projectId}`, {
+type Params = Promise<{ projectId: string }>;
+const ProjectDetails = async ({ params }: { params: Params }) => {
+  const { projectId } = await params;
+  const res = await fetch(`${backend}/admin/projects/${projectId}`, {
     cache: "no-store",
   });
   const { data: project } = await res.json();
