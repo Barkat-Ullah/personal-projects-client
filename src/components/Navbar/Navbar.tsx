@@ -2,8 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { FaBars, FaTimes, FaArrowRight} from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaArrowRight,
+  FaProjectDiagram,
+} from "react-icons/fa";
 
 import LoginModal from "./LoginModal";
 import { getUserFromToken } from "@/utils/getUser";
@@ -27,13 +31,9 @@ const Navigation = () => {
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
             <Link href="/">
-              <Image
-                className=""
-                src="https://merakiui.com/images/full-logo.svg"
-                alt="Logo"
-                width={120}
-                height={28}
-              />
+              <h2 className="">
+                <FaProjectDiagram className="text-3xl lg:text-5xl text-blue-500 " />
+              </h2>
             </Link>
 
             <div className="flex lg:hidden">

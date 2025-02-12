@@ -61,8 +61,14 @@ const ProjectDetailsCard: React.FC<ProjectDetailsProps> = ({ project }) => {
               key={index}
               className="flex items-center gap-2 bg-white dark:bg-gray-800 px-3 py-2 rounded-lg shadow"
             >
-              <Image src={tech.icon} width={24} height={24} alt={tech.name} />
-              <span className="text-sm font-medium text-gray-700 dark:text-white">
+              <Image
+                className="object-cover"
+                src={tech.icon}
+                width={24}
+                height={24}
+                alt={tech.name}
+              />
+              <span className="text-sm font-medium text-gray-700 dark:text-white ">
                 {tech.name}
               </span>
             </div>
