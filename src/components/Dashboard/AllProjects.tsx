@@ -22,9 +22,6 @@ const AllProjects: React.FC<AllProjectsPageProps> = ({ projects }) => {
       try {
         await fetch(`${backend}/admin/projects/${id}`, {
           method: "DELETE",
-          headers: {
-            Authorization: `${localStorage.getItem("token")}`,
-          },
         });
   
         setProjectList((prev) => prev.filter((pro) => pro._id !== id));

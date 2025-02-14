@@ -1,12 +1,17 @@
 import { jwtDecode } from "jwt-decode";
 
 export const getUserFromToken = () => {
-  const token = localStorage.getItem("token");
-
-  if (!token) return null;
+  if (typeof window === "undefined") {
+    return null; 
+  }
 
   try {
-    const decoded = jwtDecode(token) as { id: string; role: string };;
+    const token = localStorage.getItem("token");
+
+    if (!token) return null;
+
+    // ✅ Decode the token safely
+    const decoded = jwtDecode<{ id: string; role: string }>(token);
     return decoded;
   } catch (error) {
     console.error("Invalid Token:", error);

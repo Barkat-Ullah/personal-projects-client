@@ -10,7 +10,6 @@ const AllBlogPage = async () => {
   });
 
   const { data: blogs }: { data: BlogTypes[] } = await res.json();
-  console.log(blogs);
 
   return (
  <div className="">

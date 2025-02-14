@@ -2,21 +2,18 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { getUserFromToken } from "@/utils/getUser";
-import { backend } from "@/utils/backend";
+import { createBlog } from "@/utils/creatBlog";
 
 interface BlogFormData {
   title: string;
   content: string;
   category: string;
   image: string;
-  userId: string;
-  role: string;
 }
 
 const CreateBlog: React.FC = () => {
-  const user = getUserFromToken();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -27,23 +24,22 @@ const CreateBlog: React.FC = () => {
 
   const onSubmit = async (data: BlogFormData) => {
     try {
-      const blogData = { ...data, userId: user?.id, role: user?.role };
-      const response = await fetch(`${backend}/admin/blogs`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(blogData),
-      });
-      if (response) {
+      setLoading(true);
+
+      const response = await createBlog(data);
+   
+      if (response.success) {
         setSuccessMessage("Blog submitted successfully!");
         reset();
-        setTimeout(() => setSuccessMessage(null), 4000);
+      } else {
+        setSuccessMessage(response.message || "Failed to submit the blog.");
       }
+      setLoading(false);
+      setTimeout(() => setSuccessMessage(null), 4000);
     } catch (error) {
       console.error("Error:", error);
       setSuccessMessage("Failed to submit the blog.");
+      setLoading(false);
       setTimeout(() => setSuccessMessage(null), 4000);
     }
   };
@@ -88,7 +84,7 @@ const CreateBlog: React.FC = () => {
           )}
         </div>
 
-        <div className="">
+        <div>
           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
             Category
           </label>
@@ -123,8 +119,9 @@ const CreateBlog: React.FC = () => {
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition"
+          disabled={loading}
         >
-          Submit
+          {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>

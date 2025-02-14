@@ -31,7 +31,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
     setError(null);
 
     const userInfo = await loggedinUser(data);
-    console.log(userInfo)
+    
 
     if (userInfo.success) {
       localStorage.setItem("token", userInfo?.data?.accessToken); 

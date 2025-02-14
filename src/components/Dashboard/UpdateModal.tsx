@@ -47,7 +47,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${localStorage.getItem("token")}`,
+         
         },
         body: JSON.stringify({
           userId: user?.id,

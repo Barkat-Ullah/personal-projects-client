@@ -29,9 +29,6 @@ const AllBlogsPage: React.FC<AllBlogsPageProps> = ({ blogs }) => {
     try {
       await fetch(`${backend}/admin/blogs/${id}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `${localStorage.getItem("token")}`,
-        },
       });
 
       setBlogList((prev) => prev.filter((blog) => blog._id !== id));

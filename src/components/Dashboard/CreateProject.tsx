@@ -41,7 +41,7 @@ const CreateProject: React.FC = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${localStorage.getItem("token")}`,
+         
         },
         body: JSON.stringify(data),
       });

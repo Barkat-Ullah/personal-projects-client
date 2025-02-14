@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { backend } from "@/utils/backend";
-import { getUserFromToken } from "@/utils/getUser";
 import { Project } from "@/app/dashboard/all-projects/page";
 
 interface UpdateModalProps {
@@ -15,7 +14,7 @@ const UpdateProject: React.FC<UpdateModalProps> = ({
   setModalOpen,
   setProjectList,
 }) => {
-  const user = getUserFromToken();
+
 
   // Fix: Add missing states for content and category
   const [title, setTitle] = useState<string>(project.title);
@@ -36,11 +35,10 @@ const UpdateProject: React.FC<UpdateModalProps> = ({
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${localStorage.getItem("token")}`,
+       
         },
         body: JSON.stringify({
-          userId: user?.id,
-          role: user?.role,
+         
           title,
 
           image,
