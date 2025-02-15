@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Personal Project
 
-## Getting Started
+## 📌 Overview
+This is a **Next.js** and **TypeScript**-based web application with a backend powered by **Node.js**, **Express**, and **Mongoose**. The project also integrates **Acternity UI** for a modern and sleek user interface.
 
-First, run the development server:
+## 🛠️ Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Frontend
+- ⚡ **Next.js** (App Router)
+- 📝 **TypeScript**
+- 🎨 **Acternity UI** (for styling & UI components)
+
+### Backend
+- 🌎 **Node.js**
+- 🚀 **Express.js** (REST API)
+- 🗄️ **Mongoose** (MongoDB ORM)
+
+## 📂 Project Structure
+```
+├── backend/                 # Node.js & Express backend
+│   ├── models/              # Mongoose models
+│   ├── routes/              # API routes
+│   ├── controllers/         # Route handlers
+│   ├── config/              # Configuration files
+│   ├── server.ts            # Entry point
+│
+├── frontend/                # Next.js & TypeScript frontend
+│   ├── components/          # Reusable UI components
+│   ├── pages/               # Next.js pages
+│   ├── utils/               # Helper functions
+│   ├── styles/              # Global styles
+│   ├── app/                 # App Router components
+│
+├── .env                     # Environment variables
+├── package.json             # Dependencies & scripts
+├── README.md                # Project documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Installation
 
-## Learn More
+1️⃣ Clone the repository:
+```sh
+git clone https://github.com/Barkat-Ullah/personal-projects-client
+cd your-repo
+```
 
-To learn more about Next.js, take a look at the following resources:
+2️⃣ Install dependencies:
+```sh
+# Install frontend & backend dependencies
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3️⃣ Set up environment variables:
+Create a `.env` file in the root directory and add:
+```
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4️⃣ Run the project:
+```sh
+# Start the backend
+cd backend && yarn dev
 
-## Deploy on Vercel
+# Start the frontend
+cd frontend && yarn dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📌 Features
+✅ User Authentication (Login & Signup)
+✅ Responsive UI with Acternity UI
+✅ CRUD Operations with MongoDB
+✅ Secure API with JWT Authentication
+✅ Fully typed with TypeScript
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+Contributions are welcome! Feel free to fork the repository and submit a pull request.
+
+## 📄 License
+This project is licensed under the MIT License.
+
+---
+
+💡 _Built with ❤️ using Next.js, TypeScript, and Node.js_.
+
