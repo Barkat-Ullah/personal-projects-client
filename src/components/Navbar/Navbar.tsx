@@ -16,11 +16,11 @@ const Navigation = () => {
   const [session, setSession] = useState<{ id: string; role: string } | null>(
     null
   );
-
+  const [reload, setReload] = useState<boolean>(false); 
 
   useEffect(() => {
     setSession(getUserFromToken());
-  }, []);
+  }, [reload]);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -92,6 +92,8 @@ const Navigation = () => {
       <LoginModal
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
+        setReload={setReload} 
+        reload={reload}
       />
     </nav>
   );

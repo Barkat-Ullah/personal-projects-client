@@ -22,6 +22,7 @@ const AllBlogsPage: React.FC<AllBlogsPageProps> = ({ blogs }) => {
   const [loading, setLoading] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedBlog, setSelectedBlog] = useState<BlogTypes | null>(null);
+   const [reload, setReload] = useState<boolean>(false); 
 
   // ✅ Delete Function
   const handleDelete = async (id: string) => {
@@ -96,6 +97,8 @@ const AllBlogsPage: React.FC<AllBlogsPageProps> = ({ blogs }) => {
           blog={selectedBlog}
           setModalOpen={setModalOpen}
           setBlogList={setBlogList}
+          reload={reload}
+          setReload={setReload}
         />
       )}
     </div>

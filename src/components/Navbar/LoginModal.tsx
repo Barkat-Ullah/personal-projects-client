@@ -1,5 +1,3 @@
-
-
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -8,6 +6,7 @@ import { loggedinUser } from "@/utils/auth";
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
+ 
 }
 
 interface FormValues {
@@ -15,7 +14,19 @@ interface FormValues {
   password: string;
 }
 
-const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
+interface LoginModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>; // Set the type for setReload
+  reload: boolean; // Set the type for reload
+}
+
+const LoginModal: React.FC<LoginModalProps> = ({
+  isOpen,
+  onClose,
+  setReload,
+  reload,
+}) => {
   const {
     register,
     handleSubmit,
@@ -27,16 +38,15 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const onSubmit = async (data: FormValues) => {
-   
     setError(null);
 
     const userInfo = await loggedinUser(data);
-    
 
     if (userInfo.success) {
-      localStorage.setItem("token", userInfo?.data?.accessToken); 
-      router.push("/"); 
-      onClose(); 
+      localStorage.setItem("token", userInfo?.data?.accessToken);
+      setReload(!reload); // Toggle reload
+      router.push("/");
+      onClose();
     } else {
       setError("Invalid email or password");
     }
@@ -79,7 +89,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                       type="email"
                       {...register("email", { required: "Email is required" })}
                       className="w-full px-3 py-2 border rounded text-black"
-                     
                     />
                     {errors.email && (
                       <p className="text-red-500">{errors.email.message}</p>
@@ -99,7 +108,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                         required: "Password is required",
                       })}
                       className="w-full px-3 py-2 border rounded text-black"
-                      
                     />
                     {errors.password && (
                       <p className="text-red-500">{errors.password.message}</p>

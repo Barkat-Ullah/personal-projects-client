@@ -19,12 +19,16 @@ interface UpdateModalProps {
   blog: BlogTypes;
   setModalOpen: (open: boolean) => void;
   setBlogList: React.Dispatch<React.SetStateAction<BlogTypes[]>>;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
+  reload: boolean;
 }
 
 const UpdateModal: React.FC<UpdateModalProps> = ({
   blog,
   setModalOpen,
   setBlogList,
+  reload,
+  setReload,
 }) => {
   const user = getUserFromToken();
   const [title, setTitle] = useState<string>(blog.title);
@@ -38,7 +42,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({
     setContent(blog.content);
     setCategory(blog.category);
     setImage(blog.image);
-  }, [blog]);
+  }, [blog, reload]);
 
   const handleUpdate = async () => {
     setLoading(true);
@@ -47,7 +51,6 @@ const UpdateModal: React.FC<UpdateModalProps> = ({
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-         
         },
         body: JSON.stringify({
           userId: user?.id,
@@ -64,6 +67,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({
         setBlogList((prev) =>
           prev.map((b) => (b._id === blog._id ? updatedBlog.data : b))
         );
+        setReload(!reload);
       }
 
       setModalOpen(false);
